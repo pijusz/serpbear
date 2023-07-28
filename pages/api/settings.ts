@@ -1,7 +1,7 @@
+import { writeFile, readFile } from 'fs/promises';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Cryptr from 'cryptr';
 import getConfig from 'next/config';
-import { writeFile, readFile } from 'fs/promises';
 import verifyUser from '../../utils/verifyUser';
 import allScrapers from '../../scrapers/index';
 
@@ -54,7 +54,7 @@ const updateSettings = async (req: NextApiRequest, res: NextApiResponse<Settings
    }
 };
 
-export const getAppSettings = async () : Promise<SettingsType> => {
+export const getAppSettings = async (): Promise<SettingsType> => {
    try {
       const settingsRaw = await readFile(`${process.cwd()}/data/settings.json`, { encoding: 'utf-8' });
       const settings: SettingsType = settingsRaw ? JSON.parse(settingsRaw) : {};
